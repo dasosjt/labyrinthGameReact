@@ -1,5 +1,5 @@
 import React from 'react'
-import grid from '../containers/data'
+import grid from './data'
 import { fromJS } from 'immutable'
 
 //Actions
@@ -33,13 +33,13 @@ const defaultState = fromJS({
 const reducer = (state=defaultState, action={}) => {
   switch(action.type){
     case SET_PLAYER:
-      console.log(state.getIn(['position', 'x']));
+      //console.log(state.getIn(['position', 'x']));
       return state.set('position', fromJS(action.position))
     case MOVE_PLAYER:
       let x = Number(state.getIn(['position', 'x'])) + action.direction.x
       let y = Number(state.getIn(['position', 'y'])) + action.direction.y  
       let position = state.getIn(['grid', x, y])
-      console.log(position, x, y)
+      //console.log(position, x, y)
       if(position === ' '){
         const s1 = state.setIn(['grid', state.getIn(['position', 'x']), state.getIn(['position', 'y'])], ' ')
         const s2 = s1.setIn(['grid', x, y], 'p')

@@ -20,10 +20,12 @@ class App extends React.Component{
   }
 
   componentWillMount(){
+    alert("Move with Arrow Keys")
+
     this.props.grid.forEach((row, row_index) => {
       row.forEach((element, element_index) => {
         if(element === "p"){
-          this.props.setPositionPlayer({x: element_index, y: row_index})
+          this.props.setPositionPlayer({x: row_index, y: element_index})
         }
       })
     })
@@ -37,8 +39,8 @@ class App extends React.Component{
   }
   
   componentWillUnmount() {
-    Mousetrap.bind(['up'], () => this.props.onPressMove({x: 0, y: 1}))
-    Mousetrap.bind(['down'], () => this.props.onPressMove({x: 0, y: -1}))
+    Mousetrap.bind(['up'], () => this.props.onPressMove({x: 0, y: -1}))
+    Mousetrap.bind(['down'], () => this.props.onPressMove({x: 0, y: 1}))
     Mousetrap.bind(['left'], () => this.props.onPressMove({x: -1, y: 0}))
     Mousetrap.bind(['right'], () => this.props.onPressMove({x: 1, y: 0}))
   }
